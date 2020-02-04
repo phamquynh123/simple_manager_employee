@@ -41,6 +41,7 @@
         <!--end::Base Styles -->
         <link rel="shortcut icon" href="{{ asset('/') }}bower_components/demo/default/media/img/logo/favicon.ico" />
         @yield('css')
+        @routes
     </head>
 
     <!-- end::Head -->
@@ -385,7 +386,15 @@
                                                                     </a>
                                                                 </li>
                                                                 <li class="m-nav__item">
-                                                                    <a href="snippets/pages/user/login-1.html" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
+                                                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -470,7 +479,7 @@
                     <div class="m-subheader ">
                         <div class="d-flex align-items-center">
                             <div class="mr-auto">
-                                <h3 class="m-subheader__title ">Dashboard</h3>
+                                <h3 class="m-subheader__title ">@yield('namepage')</h3>
                             </div>
                             {{-- <div>
                                 <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
@@ -489,9 +498,9 @@
                     <!-- END: Subheader -->
                     <div class="m-content">
                         <!--Begin::Section-->
-                        <div class="row">
+                        {{-- <div class="row"> --}}
                             @yield('content')
-                        </div>
+                        {{-- </div> --}}
                         <!--End::Section-->
                     </div>
                 </div>
@@ -1034,7 +1043,10 @@
         <!--begin::Page Snippets -->
         <script src="{{ asset('/') }}bower_components/app/js/dashboard.js" type="text/javascript"></script>
         <!--end::Page Snippets -->
-
+            
+        <script src = "{{ asset('bower_components/js/jquery.dataTables.min.js') }}"></script>
+        <script src = "{{ asset('bower_components/js/toastr.min.js') }}"></script>
+        <script src = "{{ asset('bower_components/js/sweetalert2@8.js') }}"></script>
         @yield('js')
     </body>
 

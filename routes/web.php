@@ -21,8 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/admin/home', function() {
-        return view('admin/home');
-    });
-    // Route::get('home', '')
+    Route::get('/admin/home', 'HomeController@home');
+    Route::get('/profile', 'UserController@showProfile');
+    Route::post('/editprofile', 'UserController@editprofile')->name('editprofile');
+    Route::post('/changepass', 'UserController@changepass')->name('changepass');
 });
