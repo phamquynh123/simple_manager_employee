@@ -2,13 +2,7 @@
 
 @section('content')
     <div>hello</div>
-
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
+@if(Auth::user()->first_time == config('message.first_time'))
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -17,11 +11,12 @@
                 Yêu cầu đổi mật khẩu.</h2> 
               </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-success"><a href="{{ asset('profile') }}">Đổi mật khẩu.</a> </button>
             </div>
         </div>
     </div>
 </div>
+@endif
 @endsection
 
 @section('js')
