@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\AddUserRequest;
 use App\Repositories\User\UserRepositoryInterface;
+use App\Model\Room;
+use App\Model\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
 {
     protected $UserRepo;
 
-    public function __construct(UserRepositoryInterface $UserRepo)
+    public function __construct( UserRepositoryInterface $UserRepo)
     {
         $this->UserRepo = $UserRepo;
     }
@@ -56,9 +60,57 @@ class UserController extends Controller
             $data['first_time'] = 1;
             $data = $this->UserRepo->update($data['id'], $data);
 
-            return response()->json(['success' => 'Thayy Đổi Mật Khẩu Thành Công', 'error' => false]);
+            return response()->json(['success' => 'Thay Đổi Mật Khẩu Thành Công', 'error' => false]);
         } else {
             return response()->json(['success' => 'Mật Khẩu Cũ Sai!', 'error' => true]);
         }
+    }
+
+    public function index()
+    {
+        $roles = Role::all();
+        $rooms = Room::all();
+
+        return view('admin/employee', compact(['roles', 'rooms']));
+    }
+
+    public function employeeDatatable()
+    {
+        $data = $this->UserRepo->getAll()->load(['room','role']);
+
+        return Datatables::of($data)
+            ->addColumn('action', function ($item) {
+               
+                return '<a href="' . route('nv.repass', $item->id) . '" class="btn btn-sm btn-warning room-detail btn-xs" data-id="' . $item->id . '"  data-toggle="modal" data-target="#ModalDetail"><i class="fa fa-user-lock"></i></a> <a href="#" data-id="' . $item->id .'" class="btn btn-sm btn-info room-edit btn-xs" data-id="' . $item->id . '"  data-toggle="modal" data-target="#ModalEdit" title=""><i class="fa fa-edit"></i></a> <a href="#" class="btn btn-sm btn-danger btn-xs remove" data-id="' . $item->id . '" title="' . trans('validation.exist') . '"><i class="fa fa-trash"></i></a>';
+            })
+            ->editColumn('avatar', function($item) {
+                $image = "";
+                if ($item->avatar == null) {
+                    $image = asset('') . config('Custom.linkIMGdefault');
+                } else {
+                    $image = asset('') . '/' . $item->avatar;
+                }
+                // dd($image);
+                return '<img class="img-avatar" src=" ' . $image . ' "/>';
+            })
+            ->editColumn('role', function($item) {
+                return $item['role']['display_name'];
+            })
+            ->editColumn('room', function($item) {
+                return $item['room']['display_name'];
+            })
+            ->rawColumns([ 
+                'action', 'avatar', 'role', 'room',
+            ])
+            ->make(true);
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        dd($data);
+        $respon = $this->UserRepo->insert($data);
+
+        return response()->json(['success' => 'Thêm Mới Nhân Viên Thành Công!']);
     }
 }

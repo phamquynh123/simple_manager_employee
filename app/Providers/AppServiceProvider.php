@@ -16,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         $this->app->bind("App\\Repositories\\User\\UserRepositoryInterface","App\\Repositories\\User\\UserRepository");
+        $this->app->bind("App\\Repositories\\Room\\RoomRepositoryInterface","App\\Repositories\\Room\\RoomRepository");
+        $this->app->bind("App\\Repositories\\Role\\RoleRepositoryInterface","App\\Repositories\\Role\\RoleRepository");
     }
 
     /**
