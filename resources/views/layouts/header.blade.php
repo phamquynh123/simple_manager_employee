@@ -461,7 +461,17 @@
                                     <i class="m-menu__link-icon flaticon-line-graph"></i>
                                     <span class="m-menu__link-title">
                                         <span class="m-menu__link-wrap">
-                                            <span class="m-menu__link-text">Room</span>
+                                            <span class="m-menu__link-text">Bộ Phận</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="m-menu__item " aria-haspopup="true">
+                                <a href="{{ asset('employee') }}" class="m-menu__link ">
+                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                    <span class="m-menu__link-title">
+                                        <span class="m-menu__link-wrap">
+                                            <span class="m-menu__link-text">Nhân Viên</span>
                                         </span>
                                     </span>
                                 </a>
@@ -481,17 +491,6 @@
                             <div class="mr-auto">
                                 <h3 class="m-subheader__title ">@yield('namepage')</h3>
                             </div>
-                            {{-- <div>
-                                <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
-                                    <span class="m-subheader__daterange-label">
-                                        <span class="m-subheader__daterange-title"></span>
-                                        <span class="m-subheader__daterange-date m--font-brand"></span>
-                                    </span>
-                                    <a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
-                                        <i class="la la-angle-down"></i>
-                                    </a>
-                                </span>
-                            </div> --}}
                         </div>
                     </div>
 
@@ -501,7 +500,7 @@
                         {{-- <div class="row"> --}}
                             @yield('content')
                         {{-- </div> --}}
-                        <!--End::Section-->
+                        {{-- End::Section --}}
                     </div>
                 </div>
             </div>
