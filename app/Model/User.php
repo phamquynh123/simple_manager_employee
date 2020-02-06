@@ -12,10 +12,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'avatar',
-        'first_time',
-        'role_id',
-        'room_id',
+        'avatar', //nullable
+        'first_time',  //defaul 0
+        'role_id', //default 0
+        'room_id', //default 0
     ];
 
     public function room()

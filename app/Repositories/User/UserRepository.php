@@ -17,4 +17,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return User::class;
     }
 
+    public function getUserNotRoot($name, $cond)
+    {
+        return $this->_model::whereNotIn($name, [$cond])->get(['id', 'name', 'email']);
+    }
+
 }
