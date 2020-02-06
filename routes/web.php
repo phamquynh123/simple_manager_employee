@@ -42,10 +42,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/datatable', $ctl .'@employeeDatatable')->name('table');
         Route::get('/repass', $ctl . '@repass')->name('repass');
         Route::post('/add', $ctl . '@store')->name('add');
+        Route::post('/ResetPassOne/{id}', $ctl . '@ResetPassOne')->name('resetPassOne');
+        Route::get('/getinfoToChangePass', $ctl . '@getinfoToChangePass')->name('getinfoToChangePass');
+        Route::post('/resetPassGroup', $ctl . '@resetPassGroup')->name('resetPassGroup');
+        Route::get('/editinfo/{id}', $ctl . '@editinfo')->name('editinfo');
+        Route::post('/updateinfo/{id}', $ctl . '@updateinfo')->name('updateinfo');
     });
-});
-Route::get('/HDTutoMail', function () {
-    $user = \App\Model\User::find('1');
-    Mail::to("phamquynh047@gmail.com")->send(new \App\Mail\SendEmail($user));
-    dd("Email is Send.");
+
+    Route::get('/employeeList', 'UserController@employeeList');
+    Route::get('/listEmployeeByRoom', 'UserController@listEmployeeByRoom')->name('listEmployeeByRoom');
 });

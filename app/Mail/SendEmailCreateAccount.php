@@ -9,23 +9,29 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Model\User;
 
-class SendEmail extends Mailable
+class SendEmailCreateAccount extends Mailable
 {
     use Queueable, SerializesModels;
-    public $UserRepo;
+
+    public $data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct( 
-        User $user
-        // UserRepositoryInterface $UserRepo
-    ) {
-        $this->user = $user;
-        // $this->UserRepo = $UserRepo;
-    }
+    // public function __construct( 
+    //     User $user
+    //     // UserRepositoryInterface $UserRepo
+    // ) {
+    //     $this->user = $user;
+    //     // $this->UserRepo = $UserRepo;
+    // }
 
+    public function __construct($data)
+    {
+        $this->data = $data;
+        // dd($data);
+    }
     /**
      * Build the message.
      *
@@ -33,6 +39,6 @@ class SendEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.sendEmail');
+        return $this->view('email.sendEmailCreateAccount', compact($this->data));
     }
 }

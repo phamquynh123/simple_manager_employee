@@ -7,6 +7,7 @@
         <title>Metronic | Dashboard</title>
         <meta name="description" content="Latest updates and statistic charts">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!--begin::Web font -->
         <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
@@ -48,7 +49,6 @@
 
     <!-- begin::Body -->
     <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
-
         <!-- begin:: Page -->
         <div class="m-grid m-grid--hor m-grid--root m-page">
 
@@ -361,7 +361,7 @@
                                                                     <span class="m-nav__section-text">Section</span>
                                                                 </li>
                                                                 <li class="m-nav__item">
-                                                                    <a href="header/profile.html" class="m-nav__link">
+                                                                    <a href="{{ asset('/profile') }}" class="m-nav__link">
                                                                         <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                                         <span class="m-nav__link-title">
                                                                             <span class="m-nav__link-wrap">
@@ -374,13 +374,13 @@
                                                                     </a>
                                                                 </li>
                                                                 <li class="m-nav__item">
-                                                                    <a href="header/profile.html" class="m-nav__link">
+                                                                    <a href="{{ asset('/profile') }}" class="m-nav__link">
                                                                         <i class="m-nav__link-icon flaticon-share"></i>
                                                                         <span class="m-nav__link-text">Activity</span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="m-nav__item">
-                                                                    <a href="header/profile.html" class="m-nav__link">
+                                                                    <a href="{{ asset('/profile') }}" class="m-nav__link">
                                                                         <i class="m-nav__link-icon flaticon-chat-1"></i>
                                                                         <span class="m-nav__link-text">Messages</span>
                                                                     </a>
@@ -446,6 +446,7 @@
                                     </span>
                                 </a>
                             </li>
+                            @if(Gate::allows('root'))
                             <li class="m-menu__item " aria-haspopup="true">
                                 <a href="{{ asset('role') }}" class="m-menu__link ">
                                     <i class="m-menu__link-icon flaticon-line-graph"></i>
@@ -456,6 +457,9 @@
                                     </span>
                                 </a>
                             </li>
+                            @endif
+
+                            @if(Gate::allows('root'))
                             <li class="m-menu__item " aria-haspopup="true">
                                 <a href="{{ asset('room') }}" class="m-menu__link ">
                                     <i class="m-menu__link-icon flaticon-line-graph"></i>
@@ -466,6 +470,9 @@
                                     </span>
                                 </a>
                             </li>
+                            @endif
+
+                            @if(Gate::allows('root'))
                             <li class="m-menu__item " aria-haspopup="true">
                                 <a href="{{ asset('employee') }}" class="m-menu__link ">
                                     <i class="m-menu__link-icon flaticon-line-graph"></i>
@@ -476,6 +483,20 @@
                                     </span>
                                 </a>
                             </li>
+                            @endif
+
+                            @if(Gate::allows('manager'))
+                            <li class="m-menu__item " aria-haspopup="true">
+                                <a href="{{ asset('employeeList') }}" class="m-menu__link ">
+                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                    <span class="m-menu__link-title">
+                                        <span class="m-menu__link-wrap">
+                                            <span class="m-menu__link-text">Xem Danh Sách Nhân Viên</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
 
