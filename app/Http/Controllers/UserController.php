@@ -179,7 +179,6 @@ class UserController extends Controller
 
     public function getinfoToChangePass()
     {
-        // dd('a');
         $data = $this->UserRepo->getUserNotRoot('role_id', config('message.root'));
 
         return $data;
@@ -226,18 +225,19 @@ class UserController extends Controller
     }
 
     //get User By rooom. Seen by manager.
-
     public function employeeList()
     {
-        return view('admin.employeeList');
+        $data = $this->RoomRepo->find(Auth::user()->role_id)->load('user');
+        return view('admin.employeeList', compact('data'));
     }
 
     public function listEmployeeByRoom()
     {
         $data = $this->RoomRepo->find(Auth::user()->role_id)->load('user');
         // dd($data['user']);
+        $user = $data['user'];
 
-        return Datatables::of($data['user'])
+        return Datatables::of($user)
             ->editColumn('avatar', function($item) {
                 $image = "";
                 if ($item->avatar == null) {

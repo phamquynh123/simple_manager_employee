@@ -201,4 +201,11 @@
 
 @section('js')
     <script src="{{ asset('bower_components/js/profile.js') }}"></script>
+    <script>
+        // $('#exampleModal').modal({backdrop: 'static', keyboard: true}) 
+        // $('#exampleModal').modal({backdrop:'false', keyboard:false});
+        // $( document ).ready(function() {
+        //     $('#exampleModal').modal({backdrop:'static', keyboard:false});
+        // });
+    </script>
 @endsection
