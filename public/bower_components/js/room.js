@@ -89,7 +89,6 @@ $(document).on('click', '.room-edit', function(e) {
         cache: false,
         contentType: false,
         processData: false,
-        data: new FormData(this),
         url: route('room.edit', id),
         success: function(response) {
             $('#edit-display').val(response.display_name);

@@ -97,7 +97,6 @@ $(document).on('click', '.reset-password-group', function() {
         cache: false,
         contentType: false,
         processData: false,
-        data: new FormData(this),
         url: route('nv.getinfoToChangePass'),
         success: function(response) {
             $.each(response, function($key, $value) {
@@ -144,7 +143,6 @@ $(document).on('click', '.employee-edit', function(){
         cache: false,
         contentType: false,
         processData: false,
-        data: new FormData(this),
         url: route('nv.editinfo', id),
         success: function(response) {
             $('#role-edit').val(response.role_id);

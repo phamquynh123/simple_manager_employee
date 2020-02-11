@@ -25,7 +25,7 @@
                 <tr>
                     <td>{{ $value['id'] }}</td>
                     <td>{{ $value['name'] }}</td>
-                    <td>{{ $value['email'] }}</td>$value['avatar']
+                    <td>{{ $value['email'] }}</td>
                     <td>
                         @if ($value['avatar'] == null)
                             <img class="img-avatar" src=" {{ asset('') . config('message.IMGdefault') }} "/>

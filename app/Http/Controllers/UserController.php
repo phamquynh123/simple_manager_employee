@@ -66,6 +66,7 @@ class UserController extends Controller
         $data = $request->all();
         try{
             DB::beginTransaction();
+            $a = true;
             $data['id'] = Auth::user()->id;
             $oldpass = Auth::user()->password;
             if (Hash::check($data['oldpass'], $oldpass)) {
@@ -76,13 +77,17 @@ class UserController extends Controller
                 // hash and save to DB
                 $data['password'] = Hash::make($data['newpass']);
                 $data['first_time'] = 1;
+                // dd($data);
                 $data = $this->UserRepo->update($data['id'], $data);
-
+            } else {
+                $a =false;
+            }
+            DB::commit();
+            if ($a = true) {
                 return response()->json(['success' => 'Thay Đổi Mật Khẩu Thành Công', 'error' => false]);
             } else {
                 return response()->json(['success' => 'Mật Khẩu Cũ Sai!', 'error' => true]);
             }
-            DB::commit();
         } catch (Exception $e) {
             DB::rollback();
         }
