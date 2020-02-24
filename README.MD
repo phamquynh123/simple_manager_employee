@@ -1,4 +1,5 @@
 <h1>Tạo ứng dụng duyệt và quản lý nhân viên có các tính năng sau:</h1>
+VJtraining
 <hr>
 <b>Chức năng dành cho root account</b>
 Có thể đăng nhập sử dụng root account với username / password <br>
