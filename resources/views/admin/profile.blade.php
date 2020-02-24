@@ -166,19 +166,19 @@
                                 <div class="form-group m-form__group row">
                                     <label for="example-text-input" class="col-2 col-form-label">Mật Khẩu Cũ</label>
                                     <div class="col-7">
-                                        <input class="form-control m-input" type="text" value="" id="oldpass" name="oldpass">
+                                        <input class="form-control m-input" type="password" value="" id="oldpass" name="oldpass">
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
                                     <label for="example-text-input" class="col-2 col-form-label">Mật Khẩu Mới</label>
                                     <div class="col-7">
-                                        <input class="form-control m-input" type="text" value="" id="newpass" name="newpass">
+                                        <input class="form-control m-input" type="password" value="" id="newpass" name="newpass">
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
                                     <label for="example-text-input" class="col-2 col-form-label">Xác Nhận Mật Khẩu</label>
                                     <div class="col-7">
-                                        <input class="form-control m-input" type="text" value="" id="confirmpass" name="confirmpass">
+                                        <input class="form-control m-input" type="password" value="" id="confirmpass" name="confirmpass">
                                     </div>
                                 </div>
                                 <div class="row">
